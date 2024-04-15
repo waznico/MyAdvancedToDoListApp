@@ -2,33 +2,30 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:extension="clr-namespace:MyAdvancedToDoListApp"
+             xmlns:notes="clr-namespace:MyAdvancedToDoListApp"
              x:Class="MyAdvancedToDoListApp.MainPage">
 
     <ScrollView>
         <VerticalStackLayout
             x:Name="MyStackLayout"
-            Padding="30,0"
+            Padding="{OnPlatform iOS='30,60,30,30', Default='30'}"
             Spacing="25">
-            
-            <VerticalStackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="30,60,30,30" />
-                </OnPlatform>
-            </VerticalStackLayout.Padding>
 
             <Label
                 Text="Notes"
-                Style="{StaticResource Headline}"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="{x:Static Member=notes:SharedResources.FontColor}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
                 Text="Enter your note"
                 Style="{StaticResource SubHeadline}"
-                FontSize="{extension:GlobalFontSize}"
+                FontSize="{notes:GlobalFontSize}"
+                TextColor="{x:Static Member=notes:SharedResources.FontColor}"
                 SemanticProperties.HeadingLevel="Level2" />
 
-            <Editor x:Name="NoteInput" Placeholder="Enter note here..." HeightRequest="250" />
+            <Editor x:Name="NoteInput" Placeholder="Enter note here..." HeightRequest="{OnPlatform 100, Android=500, iOS=500}" />
 
             <Grid HeightRequest="40">
                 <Grid.ColumnDefinitions>
@@ -40,6 +37,8 @@
                 <Button
                     x:Name="SaveBtn"
                     Text="Save"
+                    TextColor="{x:Static Member=notes:SharedResources.FontColor}"
+                    BackgroundColor="{x:Static Member=notes:SharedResources.BackgroundColor}"
                     SemanticProperties.Hint="Saves the note"
                     Clicked="OnSaveClicked"
                     HorizontalOptions="Start"
@@ -50,6 +49,8 @@
                 <Button
                     x:Name="DeleteBtn"
                     Text="Delete"
+                    TextColor="{x:Static Member=notes:SharedResources.FontColor}"
+                    BackgroundColor="{x:Static Member=notes:SharedResources.BackgroundColor}"
                     SemanticProperties.Hint="Deletes the note"
                     Clicked="OnDeleteClicked"
                     HorizontalOptions="End"
