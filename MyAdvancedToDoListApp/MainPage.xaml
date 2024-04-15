@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extension="clr-namespace:MyAdvancedToDoListApp"
+             x:Class="MyAdvancedToDoListApp.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            x:Name="MyStackLayout"
+            Padding="30,0"
+            Spacing="25">
+            
+            <VerticalStackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="30,60,30,30" />
+                </OnPlatform>
+            </VerticalStackLayout.Padding>
+
+            <Label
+                Text="Notes"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Enter your note"
+                Style="{StaticResource SubHeadline}"
+                FontSize="{extension:GlobalFontSize}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Editor x:Name="NoteInput" Placeholder="Enter note here..." HeightRequest="250" />
+
+            <Grid HeightRequest="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button
+                    x:Name="SaveBtn"
+                    Text="Save"
+                    SemanticProperties.Hint="Saves the note"
+                    Clicked="OnSaveClicked"
+                    HorizontalOptions="Start"
+                    Grid.Column="0"
+                    WidthRequest="100"
+                    />
+
+                <Button
+                    x:Name="DeleteBtn"
+                    Text="Delete"
+                    SemanticProperties.Hint="Deletes the note"
+                    Clicked="OnDeleteClicked"
+                    HorizontalOptions="End"
+                    Grid.Column="2"
+                    WidthRequest="100"
+                    />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
