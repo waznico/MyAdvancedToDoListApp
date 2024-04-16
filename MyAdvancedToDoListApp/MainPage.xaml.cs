@@ -25,7 +25,10 @@ public partial class MainPage : ContentPage
     private void OnDeleteClicked(object sender, EventArgs args)
     {
         NoteInput.Text = string.Empty;
-        File.Delete(_fileName);
+        if (File.Exists(_fileName))
+        {
+            File.Delete(_fileName);
+        }
     }
 }
 
